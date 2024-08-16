@@ -2,6 +2,7 @@ import propTypes from 'prop-types'
 
 // import { Inter } from "next/font/google";
 import './globals.css'
+import { Providers } from './hoc/Providers'
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -10,13 +11,16 @@ export const metadata = {
   description: '#TODO',
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({
+  children,
+  params: { session, ...params },
+}) {
   return (
     <html lang="es">
       <body
       // className={inter.className}
       >
-        {children}
+        <Providers session={session}>{children}</Providers>
       </body>
     </html>
   )
@@ -24,4 +28,5 @@ export default function RootLayout({ children }) {
 
 RootLayout.propTypes = {
   children: propTypes.node,
+  params: propTypes.shape({ session: propTypes.object }),
 }
