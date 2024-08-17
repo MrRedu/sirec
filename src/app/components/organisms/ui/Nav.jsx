@@ -18,7 +18,7 @@ export const Nav = ({ idRol }) => {
         {NAVIGATION_HEADER.map(({ name, href, submenu }, index) => (
           <li key={index}>
             {href ? (
-              <Button href={href} as={Link} color="primary" variant="solid">
+              <Button href={href} as={Link} color="primary" variant="flat">
                 {name}
               </Button>
             ) : (
@@ -29,7 +29,7 @@ export const Nav = ({ idRol }) => {
                     <Button
                       endContent={<ChevronDownIcon className="text-small" />}
                       color="primary"
-                      variant="solid"
+                      variant="flat"
                     >
                       {name}
                     </Button>
@@ -44,7 +44,7 @@ export const Nav = ({ idRol }) => {
                         key={subIndex}
                         href={href}
                         color="primary"
-                        variant="solid"
+                        variant="flat"
                         as={Link}
                       >
                         {name}
