@@ -3,6 +3,7 @@ import { connection } from '@/app/libs/mysql'
 
 const queryGetAllUsers = `SELECT * FROM tbl_users`
 
+// Obtener todos los usuarios
 export async function GET() {
   try {
     const [result] = await connection.query(queryGetAllUsers)

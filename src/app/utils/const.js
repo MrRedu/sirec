@@ -42,7 +42,7 @@ export const NAVIGATION_HEADER = [
     submenu: [
       {
         name: 'Usuarios',
-        href: '/usuarios',
+        href: '/users',
       },
       {
         name: 'Bitácora',
