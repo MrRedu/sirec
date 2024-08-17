@@ -10,9 +10,11 @@ export default function LoginPage() {
   if (session) redirect('/dashboard')
 
   return (
-    <>
-      <h2>LoginPage</h2>
-      <FormLogin />
-    </>
+    <div className="flex flex-wrap w-full md:p-12 items-center h-screen">
+      <div className="w-full p-4 lg:w-1/2">
+        <FormLogin />
+      </div>
+      <div className="w-1/2 hidden lg:flex">{`[IMAGE]`}</div>
+    </div>
   )
 }

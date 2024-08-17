@@ -2,7 +2,7 @@ import propTypes from 'prop-types'
 
 // import { Inter } from "next/font/google";
 import './globals.css'
-import { Providers } from './hoc/Providers'
+import { Providers } from './components/hoc/Providers'
 
 // const inter = Inter({ subsets: ["latin"] });
 
