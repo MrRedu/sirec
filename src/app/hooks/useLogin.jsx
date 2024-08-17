@@ -1,7 +1,17 @@
 import { useState } from 'react'
-import { toast } from 'sonner'
 import { validateEmail } from '@/utils/utils'
 import { signIn } from 'next-auth/react'
+
+const errorsInitialState = {
+  email: {
+    message: '',
+    hasError: false,
+  },
+  password: {
+    message: '',
+    hasError: false,
+  },
+}
 
 const loginInitialState = {
   email: '',
@@ -11,6 +21,7 @@ const loginInitialState = {
 export function useLogin() {
   const [userData, setUserData] = useState(loginInitialState)
   const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState(errorsInitialState)
   const [error, setError] = useState(null)
 
   const handleChange = e => {
@@ -23,9 +34,40 @@ export function useLogin() {
 
     const isValidEmail = validateEmail(userData.email)
 
-    if (!userData.email || !userData.password)
-      return toast.error('Todos los campos son obligatorios')
-    if (!isValidEmail) return toast.error('El correo electrónico no es valido')
+    if (!userData.email) {
+      setErrors(prev => ({
+        ...prev,
+        email: {
+          message: 'Introduzca un correo electrónico',
+          hasError: true,
+        },
+      }))
+    } else {
+      setErrors({ ...errorsInitialState })
+    }
+
+    if (!userData.password) {
+      setErrors(prev => ({
+        ...prev,
+        password: {
+          message: 'Introduzca una contraseña',
+          hasError: true,
+        },
+      }))
+      return
+    } else {
+      setErrors({ ...errorsInitialState })
+    }
+
+    if (!isValidEmail) {
+      setErrors(prev => ({
+        ...prev,
+        email: { message: 'Correo electrónico invalido', hasError: true },
+      }))
+      return
+    } else {
+      setErrors({ ...errorsInitialState })
+    }
 
     try {
       setIsLoading(true)
@@ -36,8 +78,17 @@ export function useLogin() {
         redirect: false,
       })
 
-      if (response.status === 401)
-        return toast.error('Credenciales incorrectas')
+      if (response.status === 401) {
+        setErrors(prev => ({
+          ...prev,
+          password: {
+            message: 'Contraseña incorrecta',
+            hasError: true,
+          },
+        }))
+      } else {
+        setErrors({ ...errorsInitialState })
+      }
     } catch (error) {
       setError(error)
       console.error(error)
@@ -52,5 +103,6 @@ export function useLogin() {
     handleSubmit,
     isLoading,
     error,
+    errors,
   }
 }
