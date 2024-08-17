@@ -30,6 +30,7 @@ CREATE TABLE `tbl_users` (
 
 
 INSERT INTO `tbl_users` (id_user, email_user, password_user, name_user, id_rol) VALUES
-(1, 'admin@admin.com', '$2a$10$3id82DtcyGomJC5b7WGthOUFVS6umQZqn4WR2sfE7RGvQupZIX2a6', 'Eduardo', 2);
+(1, 'admin@admin.com', '$2a$10$3id82DtcyGomJC5b7WGthOUFVS6umQZqn4WR2sfE7RGvQupZIX2a6', 'Eduardo', 2),
+(2, 'general@general.com', '$2a$10$LUTPJRGNv6IE1500wR6ZRO761I1CKRRSJk.FrD2zt3BGwwpWpcA0i', 'EduardoG', 3);
 
 COMMIT;
