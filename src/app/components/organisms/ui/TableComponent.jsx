@@ -34,7 +34,10 @@ export const TableComponent = ({
     setSelectedRow(row)
     console.log(row)
   }
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const modalToAddUser = useDisclosure()
+  const modalToConfirmDelete = useDisclosure()
+
   const {
     userData,
     handleChange,
@@ -52,7 +55,7 @@ export const TableComponent = ({
           <Button
             color={'primary'}
             endContent={<Plus />}
-            onPress={onOpen}
+            onPress={modalToAddUser.onOpen}
           >{`Agregar`}</Button>
           <Button
             isIconOnly
@@ -69,7 +72,7 @@ export const TableComponent = ({
             aria-label="Borrar"
             variant={selectedRow ? 'flat' : 'light'}
             isDisabled={!selectedRow}
-            onClick={() => deleteUser(selectedRow.email)}
+            onPress={modalToConfirmDelete.onOpen}
           >
             <Trash2 />
           </Button>
@@ -89,7 +92,11 @@ export const TableComponent = ({
         </TableHeader>
         <TableBody emptyContent={'No hay información para mostrar.'}>
           {rows.map((row, index) => (
-            <TableRow key={index} onClick={() => handleRowSelect(row)}>
+            <TableRow
+              key={index}
+              onClick={() => handleRowSelect(row)}
+              className="cursor-pointer"
+            >
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.email}</TableCell>
               <TableCell>{row.idRol}</TableCell>
@@ -97,13 +104,14 @@ export const TableComponent = ({
           ))}
         </TableBody>
       </Table>
+      {/* Modal to add user */}
       <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
+        isOpen={modalToAddUser.isOpen}
+        onOpenChange={modalToAddUser.onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}
         scrollBehavior={'inside'}
-        // backdrop={'blur'}
+        backdrop={'blur'}
       >
         <ModalContent>
           {onClose => (
@@ -135,6 +143,48 @@ export const TableComponent = ({
                   isLoading={isLoading}
                 >
                   {isLoading ? 'Creando...' : `Crear usuario`}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* Modal to confirm delete */}
+      <Modal
+        isOpen={modalToConfirmDelete.isOpen}
+        onOpenChange={modalToConfirmDelete.onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+        scrollBehavior={'inside'}
+        backdrop={'blur'}
+      >
+        <ModalContent>
+          {onClose => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                {`Eliminar usuario`}
+              </ModalHeader>
+              <ModalBody>
+                <p>{`¿Estás seguro de borrar a ${selectedRow.name}?`}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {
+                    onClose()
+                  }}
+                >
+                  {`Cerrar`}
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    deleteUser(selectedRow.email)
+                    onClose()
+                  }}
+                >
+                  {`Eliminar usuario`}
                 </Button>
               </ModalFooter>
             </>
