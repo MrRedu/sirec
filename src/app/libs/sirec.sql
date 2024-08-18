@@ -29,8 +29,8 @@ CREATE TABLE `tbl_users` (
 
 
 INSERT INTO `tbl_users` (id_user, email_user, password_user, name_user, id_rol) VALUES
-(1, 'admin@admin.com', '$2a$10$3id82DtcyGomJC5b7WGthOUFVS6umQZqn4WR2sfE7RGvQupZIX2a6', 'EduardoA', 1),
-(2, 'dev@dev.com', '$2a$10$vVrLfNccHldLVFa8dQ6VHOGzO8hcTVePsiYMIIcyn1ILjyNUWm58a', 'EduardoD', 2),
-(3, 'general@general.com', '$2a$10$LUTPJRGNv6IE1500wR6ZRO761I1CKRRSJk.FrD2zt3BGwwpWpcA0i', 'EduardoG', 3);
+(1, 'eduardo@admin.com', '$2a$10$5dvJO4wr08MM1FJvLjJIe.Al2QvqO/BHO0mCQEvJa2SAPryT8tOuy', 'Eduardo A', 1),
+(2, 'eduardo@dev.com', '$2a$10$lGUgR76myFebqgZw6b3YQOpZWYPVPywkM18CRwY37BIXVxqgMU9Wi', 'Eduardo D', 2),
+(3, 'eduardo@general.com', '$2a$10$iktNKJeBArNkaOphXDnP9uLKS8yeFP.6XjYSMeUnWpd9tuQZAMsLm', 'Eduardo G', 3);
 
 COMMIT;
