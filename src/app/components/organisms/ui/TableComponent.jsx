@@ -20,6 +20,7 @@ import {
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { FormUser } from './forms/FormUser'
+import { useRegister } from '@/hooks/useRegister'
 
 export const TableComponent = ({
   ariaLabel = 'Example static collection table',
@@ -33,6 +34,14 @@ export const TableComponent = ({
     console.log(row)
   }
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const {
+    userData,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    errors,
+    handleReset,
+  } = useRegister()
 
   return (
     <>
@@ -101,14 +110,29 @@ export const TableComponent = ({
                 {`Agregar usuario`}
               </ModalHeader>
               <ModalBody>
-                <FormUser  />
+                <FormUser
+                  userData={userData}
+                  handleChange={handleChange}
+                  errors={errors}
+                />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {
+                    handleReset()
+                    onClose()
+                  }}
+                >
                   {`Cerrar`}
                 </Button>
-                <Button color="primary" >
-                  {`Crear usuario`}
+                <Button
+                  color="primary"
+                  onClick={handleSubmit}
+                  isLoading={isLoading}
+                >
+                  {isLoading ? 'Creando...' : `Crear usuario`}
                 </Button>
               </ModalFooter>
             </>

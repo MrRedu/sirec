@@ -1,7 +1,7 @@
 'use client'
 import propTypes from 'prop-types'
+import Link from 'next/link'
 import {
-  Link,
   Button,
   Dropdown,
   DropdownTrigger,
@@ -18,8 +18,9 @@ export const Nav = ({ idRol }) => {
         {NAVIGATION_HEADER.map(({ name, href, submenu }, index) => (
           <li key={index}>
             {href ? (
-              <Button href={href} as={Link} color="primary" variant="flat">
+              <Button color="primary" variant="flat" className="relative">
                 {name}
+                <Link href={href} className="text-sm absolute inset-0" />
               </Button>
             ) : (
               // Si idRol es 3 (general) no mostrar el dropdown
@@ -36,18 +37,21 @@ export const Nav = ({ idRol }) => {
                   </DropdownTrigger>
                   <DropdownMenu
                     disallowEmptySelection
-                    aria-label="Link Actions"
+                    aria-label="Link actions"
                     className="max-w-[300px]"
                   >
                     {submenu.map(({ name, href }, subIndex) => (
                       <DropdownItem
                         key={subIndex}
-                        href={href}
                         color="primary"
                         variant="flat"
-                        as={Link}
+                        className="relative"
                       >
                         {name}
+                        <Link
+                          href={href}
+                          className="text-sm absolute inset-0"
+                        />
                       </DropdownItem>
                     ))}
                   </DropdownMenu>
