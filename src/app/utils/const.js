@@ -18,7 +18,7 @@ export const NAVIGATION_HEADER = [
   },
   {
     name: 'Asignaciones',
-    href: '/asignaciones',
+    href: '/assignments',
   },
   {
     name: 'Funcionarios',
@@ -50,7 +50,7 @@ export const NAVIGATION_HEADER = [
       },
       {
         name: 'Reportes',
-        href: '/reportes',
+        href: '/reports',
       },
     ],
   },
