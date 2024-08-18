@@ -46,7 +46,7 @@ export const NAVIGATION_HEADER = [
       },
       {
         name: 'Bitácora',
-        href: '/bitacora',
+        href: '/log',
       },
       {
         name: 'Reportes',
