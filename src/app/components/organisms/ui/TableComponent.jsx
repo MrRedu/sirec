@@ -21,6 +21,7 @@ import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { FormUser } from './forms/FormUser'
 import { useRegister } from '@/hooks/useRegister'
+import { deleteUser } from '@/services/users'
 
 export const TableComponent = ({
   ariaLabel = 'Example static collection table',
@@ -68,6 +69,7 @@ export const TableComponent = ({
             aria-label="Borrar"
             variant={selectedRow ? 'flat' : 'light'}
             isDisabled={!selectedRow}
+            onClick={() => deleteUser(selectedRow.email)}
           >
             <Trash2 />
           </Button>

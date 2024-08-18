@@ -25,3 +25,27 @@ export async function GET(req, { params }) {
     )
   }
 }
+
+export async function DELETE(req, { params }) {
+  try {
+    const result = await connection.query(
+      'DELETE FROM tbl_users WHERE email_user = ?',
+      [params.email]
+    )
+
+    if (result.affectedRows === 0) {
+      return NextResponse.json({ message: 'User not found' }, { status: 404 })
+    }
+
+    return new Response(null, { status: 204 })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json(
+      {
+        message: error.message,
+        manualMessage: 'Error deleting user',
+      },
+      { status: 500 }
+    )
+  }
+}
