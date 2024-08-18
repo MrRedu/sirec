@@ -9,12 +9,13 @@ export async function Header() {
 
   return (
     <header className="flex items-center justify-center">
-      <div className="w-full flex items-center justify-between py-4 px-8">
+      <div className="w-full flex items-center justify-between py-4 px-8 gap-8">
         <Image
           width={82}
           height={82}
           alt="Logo del Servicio Desconcentrado de Telecomunicaciones Aragua"
           src="/logo-sdta.svg"
+          className="min-w-16 min-h-16 w-16 h-16"
         />
         <Nav idRol={user.id_rol} />
         <AvatarComponent />
