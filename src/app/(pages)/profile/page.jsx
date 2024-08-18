@@ -1,7 +1,9 @@
-export default function ProfilePage () {
+import { Title } from '@/components/atoms/ui/Title'
+
+export default function ProfilePage() {
   return (
     <>
-      <h2>{`</Page>`}</h2>
+      <Title>{`ProfilePage`}</Title>{' '}
     </>
   )
-};
+}

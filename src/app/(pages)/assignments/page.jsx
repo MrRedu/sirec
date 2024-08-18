@@ -1,9 +1,9 @@
 import { Title } from '@/components/atoms/ui/Title'
 
-export default function NotFoundPage() {
+export default function AssignmentsPage() {
   return (
     <>
-      <Title>{`NotFoundPage`}</Title>
+      <Title>{`AssignmentsPage`}</Title>
     </>
   )
 }

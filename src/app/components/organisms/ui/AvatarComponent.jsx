@@ -7,6 +7,7 @@ import {
   User,
 } from '@nextui-org/react'
 import { signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export const AvatarComponent = () => {
   const { data: session } = useSession()
@@ -32,11 +33,13 @@ export const AvatarComponent = () => {
               {session ? session?.user?.email : 'email@example.com'}
             </p>
           </DropdownItem>
-          <DropdownItem key="settings" href="/profile">
+          <DropdownItem key="settings" className="relative">
             Perfil
+            <Link href="/profile" className="text-sm absolute inset-0" />
           </DropdownItem>
-          <DropdownItem key="help_and_feedback" href="/help">
+          <DropdownItem key="help" className="relative">
             Ayuda
+            <Link href="/help" className="text-sm absolute inset-0" />
           </DropdownItem>
           <DropdownItem key="logout" color="danger" onClick={signOut}>
             {'Cerrar sesión'}

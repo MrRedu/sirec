@@ -1,10 +1,10 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { Title } from '@/components/atoms/ui/Title'
 
-export default function DashboardPage() {
+export default function LogPage() {
   return (
     <Section>
-      <Title>Página principal</Title>
+      <Title>{`Bitácora`}</Title>
     </Section>
   )
 }
