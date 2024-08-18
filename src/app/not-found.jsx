@@ -1,7 +1,9 @@
+import { Title } from '@/components/atoms/ui/Title'
+
 export default function NotFoundPage() {
   return (
     <>
-      <h2>NotFoundPage</h2>
+      <Title>{`NotFoundPage`}</Title>
     </>
   )
 }

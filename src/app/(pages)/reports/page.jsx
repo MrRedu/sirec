@@ -1,11 +1,12 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { Button, Card, CardFooter, Image } from '@nextui-org/react'
+import { Title } from '@/components/atoms/ui/Title'
 
 export default function ReportsPage() {
   return (
     <Section>
       <div className="flex items-center mb-4">
-        <h2 className="text-2xl font-bold leading-none tracking-tight text-gray-800  dark:text-white">{`Reportes`}</h2>
+        <Title>{`Reportes`}</Title>
       </div>
 
       <Card

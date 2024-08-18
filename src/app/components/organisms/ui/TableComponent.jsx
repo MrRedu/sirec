@@ -22,6 +22,7 @@ import { useState } from 'react'
 import { FormUser } from './forms/FormUser'
 import { useRegister } from '@/hooks/useRegister'
 import { deleteUser } from '@/services/users'
+import { Title } from '@/components/atoms/ui/Title'
 
 export const TableComponent = ({
   ariaLabel = 'Example static collection table',
@@ -50,7 +51,7 @@ export const TableComponent = ({
   return (
     <>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold leading-none tracking-tight text-gray-800  dark:text-white">{`Usuarios`}</h2>
+        <Title>{`Usuarios`}</Title>
         <div className="flex gap-4">
           <Button
             color={'primary'}

@@ -1,7 +1,9 @@
+import { Title } from '@/components/atoms/ui/Title'
+
 export default function AssignmentsPage() {
   return (
     <>
-      <h2>{`</AssignmentsPage>`}</h2>
+      <Title>{`AssignmentsPage`}</Title>
     </>
   )
 }
