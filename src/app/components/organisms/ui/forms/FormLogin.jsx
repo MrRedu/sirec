@@ -45,8 +45,7 @@ export const FormLogin = () => {
             errorMessage={errors.email.message}
           />
           <Input
-            label="Password"
-            placeholder="••••••••"
+            label="Contraseña"
             variant="bordered"
             name="password"
             value={userData.password}
