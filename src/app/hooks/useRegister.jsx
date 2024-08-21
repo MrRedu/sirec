@@ -168,7 +168,7 @@ export function useRegister() {
           name: userData.name,
           email: userData.email,
           password: hashedPassword,
-          idRol: 3,
+          idRol: userData.idRol,
         }),
       })
 
