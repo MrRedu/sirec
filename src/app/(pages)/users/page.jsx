@@ -1,5 +1,5 @@
-import { TableComponent } from '@/components/organisms/ui/TableComponent'
 import { Section } from '@/components/atoms/ui/Section'
+import { UsersTable } from '@/components/organisms/ui/tables/UsersTable'
 
 const loadUsers = async () => {
   const res = await fetch('http://localhost:3000/api/users')
@@ -24,7 +24,7 @@ export default async function UsersPage() {
 
   return (
     <Section>
-      <TableComponent
+      <UsersTable
         ariaLabel="Tabla para ver todos los usuarios"
         columns={usersColumns}
         rows={mappedUsers}
