@@ -55,3 +55,60 @@ export const NAVIGATION_HEADER = [
     ],
   },
 ]
+
+export const MARCAS_RADIOS = [{ value: 1, label: 'Motorola' }]
+export const MODELOS_RADIOS = [
+  { value: 1, label: 'MTP850' },
+  { value: 2, label: 'MTP3550' },
+]
+export const TIPOS_RADIOS = [
+  { value: 1, label: 'Portátil' },
+  { value: 2, label: 'Móvil' },
+  { value: 3, label: 'Fijo' },
+]
+export const STATUS_RADIOS = [
+  {
+    value: 1,
+    label: 'Desincorporado',
+  },
+  {
+    value: 2,
+    label: 'En depósito',
+  },
+  {
+    value: 3,
+    label: 'En garantía',
+  },
+  {
+    value: 4,
+    label: 'En reparación',
+  },
+  {
+    value: 5,
+    label: 'Entregado',
+  },
+  {
+    value: 6,
+    label: 'Extraviado',
+  },
+  {
+    value: 7,
+    label: 'Externo',
+  },
+  {
+    value: 8,
+    label: 'Inoperativo',
+  },
+  {
+    value: 9,
+    label: 'Nuevo',
+  },
+  {
+    value: 10,
+    label: 'Operativo',
+  },
+  {
+    value: 11,
+    label: 'Vacaciones',
+  },
+]
