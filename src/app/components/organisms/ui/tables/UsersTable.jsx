@@ -19,12 +19,13 @@ import {
 
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-import { FormUser } from './forms/FormUser'
+
 import { useRegister } from '@/hooks/useRegister'
 import { deleteUser } from '@/services/users'
 import { Title } from '@/components/atoms/ui/Title'
+import { FormUser } from '../forms/FormUser'
 
-export const TableComponent = ({
+export const UsersTable = ({
   ariaLabel = 'Example static collection table',
   color = 'primary',
   columns,
@@ -196,7 +197,7 @@ export const TableComponent = ({
   )
 }
 
-TableComponent.propTypes = {
+UsersTable.propTypes = {
   ariaLabel: propTypes.string,
   color: propTypes.string,
   columns: propTypes.array,
