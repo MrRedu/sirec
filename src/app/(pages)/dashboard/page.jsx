@@ -1,10 +1,19 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { Title } from '@/components/atoms/ui/Title'
+import { CardResumen } from '@/components/molecules/CardResumen'
+import { howManyRadiosRegistered } from '@/services/radios'
+import { RadioTower } from 'lucide-react'
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const totalRadiosRegistered = await howManyRadiosRegistered()
   return (
     <Section>
-      <Title>Página principal</Title>
+      <Title>{`Resumen`}</Title>
+      <CardResumen
+        text="Radios registrados"
+        number={totalRadiosRegistered}
+        icon={<RadioTower size={36} className="text-indigo-600" />}
+      />
     </Section>
   )
 }

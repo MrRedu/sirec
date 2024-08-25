@@ -1,30 +1,27 @@
 'use client'
 import propTypes from 'prop-types'
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
   Button,
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
   useDisclosure,
 } from '@nextui-org/react'
-
-import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-
-import { useRegister } from '@/hooks/useRegister'
-import { deleteUser } from '@/services/users'
 import { Title } from '@/components/atoms/ui/Title'
-import { FormUser } from '../forms/FormUser'
+import { Pencil, Plus, Trash2 } from 'lucide-react'
+import { FormOfficer } from '../forms/FormOfficer'
+import { useOfficer } from '@/hooks/useOfficer'
 
-export const UsersTable = ({
+export const OfficersTable = ({
   ariaLabel = 'Example static collection table',
   color = 'primary',
   columns = ['Is empty'],
@@ -33,30 +30,30 @@ export const UsersTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    // console.log(row)
+    console.log(selectedRow)
   }
 
-  const modalToAddUser = useDisclosure()
+  const modalToAddOfficer = useDisclosure()
   const modalToConfirmDelete = useDisclosure()
 
   const {
-    userData,
-    handleChange,
-    handleSubmit,
+    officerData,
     isLoading,
-    errors,
+    handleChange,
     handleReset,
-  } = useRegister()
+    handleSubmit,
+    errors,
+  } = useOfficer()
 
   return (
     <>
       <div className="flex items-center justify-between mb-4">
-        <Title>{`Usuarios`}</Title>
+        <Title>{`Funcionarios`}</Title>
         <div className="flex gap-4">
           <Button
             color={'primary'}
             endContent={<Plus />}
-            onPress={modalToAddUser.onOpen}
+            onPress={modalToAddOfficer.onOpen}
           >{`Agregar`}</Button>
           <Button
             isIconOnly
@@ -98,18 +95,24 @@ export const UsersTable = ({
               onClick={() => handleRowSelect(row)}
               className="cursor-pointer"
             >
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>{row.idRol}</TableCell>
+              <TableCell>{row.nombres}</TableCell>
+              <TableCell>{row.apellidos}</TableCell>
+              <TableCell>{row.cedula}</TableCell>
+              <TableCell>{row.telefono}</TableCell>
+              <TableCell>{row.idStatus}</TableCell>
+              <TableCell>{row.idOrganismo}</TableCell>
+              <TableCell>{row.idGrupo}</TableCell>
+              <TableCell>{row.idRango}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {/* Modal to add user */}
+      {/* Modal to add officer */}
       <Modal
-        isOpen={modalToAddUser.isOpen}
-        onOpenChange={modalToAddUser.onOpenChange}
+        isOpen={modalToAddOfficer.isOpen}
+        onOpenChange={modalToAddOfficer.onOpenChange}
         isDismissable={false}
+        size="xl"
         isKeyboardDismissDisabled={true}
         scrollBehavior={'inside'}
         backdrop={'blur'}
@@ -118,11 +121,11 @@ export const UsersTable = ({
           {onClose => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {`Agregar usuario`}
+                {`Registrar funcionario`}
               </ModalHeader>
               <ModalBody>
-                <FormUser
-                  userData={userData}
+                <FormOfficer
+                  officerData={officerData}
                   handleChange={handleChange}
                   errors={errors}
                 />
@@ -143,7 +146,7 @@ export const UsersTable = ({
                   onClick={handleSubmit}
                   isLoading={isLoading}
                 >
-                  {isLoading ? 'Creando...' : `Crear usuario`}
+                  {isLoading ? 'Creando...' : `Crear funcionario`}
                 </Button>
               </ModalFooter>
             </>
@@ -163,10 +166,11 @@ export const UsersTable = ({
           {onClose => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {`Eliminar usuario`}
+                {`Eliminar radio`}
+                EPA AQUI PENDIENTE CAMBIAR
               </ModalHeader>
               <ModalBody>
-                <p>{`¿Estás seguro de borrar a ${selectedRow.name}?`}</p>
+                <p>{`¿Estás seguro de borrar el radio ${selectedRow.serial}?`}</p>
               </ModalBody>
               <ModalFooter>
                 <Button
@@ -181,11 +185,12 @@ export const UsersTable = ({
                 <Button
                   color="primary"
                   onClick={() => {
-                    deleteUser(selectedRow.email)
+                    // TODO: Hacer esta funcion
+                    // deleteOfficer(selectedRow.cedula)
                     onClose()
                   }}
                 >
-                  {`Eliminar usuario`}
+                  {`Eliminar radio`}
                 </Button>
               </ModalFooter>
             </>
@@ -196,7 +201,7 @@ export const UsersTable = ({
   )
 }
 
-UsersTable.propTypes = {
+OfficersTable.propTypes = {
   ariaLabel: propTypes.string,
   color: propTypes.string,
   columns: propTypes.array,

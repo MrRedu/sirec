@@ -36,7 +36,7 @@ export const FormRadio = ({ radioData, handleChange, errors }) => {
           name="teiRadio"
           maxLength={32}
         />
-        {/* VALIDACIÓN DE SOLO NÚMERO */}
+        {/* TODO: VALIDACIÓN DE SOLO NÚMERO */}
         <Input
           type="text"
           label="ISSI"
@@ -114,7 +114,7 @@ export const FormRadio = ({ radioData, handleChange, errors }) => {
         name="observacionRadio"
         maxLength={255}
       />
-      {/* VALIDACIÓN DE SOLO NÚMERO */}
+      {/* TODO: VALIDACIÓN DE SOLO NÚMERO */}
       <Input
         type="text"
         label="N.° de Bien"

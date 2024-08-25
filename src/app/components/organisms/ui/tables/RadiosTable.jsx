@@ -1,6 +1,5 @@
 'use client'
 import propTypes from 'prop-types'
-import { useState } from 'react'
 import {
   Button,
   Modal,
@@ -16,8 +15,12 @@ import {
   TableRow,
   useDisclosure,
 } from '@nextui-org/react'
+
+import { useState } from 'react'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
+
 import { Title } from '@/components/atoms/ui/Title'
+import { deleteRadio } from '@/services/radios'
 import { FormRadio } from '../forms/FormRadio'
 import { useRadio } from '@/hooks/useRadio'
 
@@ -27,13 +30,14 @@ export const RadiosTable = ({
   columns = ['Is empty'],
   rows = [],
 }) => {
-  const modalToAddRadio = useDisclosure()
-  const modalToConfirmDelete = useDisclosure()
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    console.log(selectedRow)
+    // console.log(selectedRow)
   }
+
+  const modalToAddRadio = useDisclosure()
+  const modalToConfirmDelete = useDisclosure()
 
   const {
     radioData,
@@ -69,7 +73,7 @@ export const RadiosTable = ({
             aria-label="Borrar"
             variant={selectedRow ? 'flat' : 'light'}
             isDisabled={!selectedRow}
-            // onPress={modalToConfirmDelete.onOpen}
+            onPress={modalToConfirmDelete.onOpen}
           >
             <Trash2 />
           </Button>
@@ -166,10 +170,10 @@ export const RadiosTable = ({
           {onClose => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {`Eliminar usuario`}
+                {`Eliminar radio`}
               </ModalHeader>
               <ModalBody>
-                <p>{`¿Estás seguro de borrar a ${selectedRow.name}?`}</p>
+                <p>{`¿Estás seguro de borrar el radio ${selectedRow.serial}?`}</p>
               </ModalBody>
               <ModalFooter>
                 <Button
@@ -184,11 +188,11 @@ export const RadiosTable = ({
                 <Button
                   color="primary"
                   onClick={() => {
-                    // deleteUser(selectedRow.email)
+                    deleteRadio(selectedRow.serial)
                     onClose()
                   }}
                 >
-                  {`Eliminar usuario`}
+                  {`Eliminar radio`}
                 </Button>
               </ModalFooter>
             </>
