@@ -114,7 +114,7 @@ CREATE TABLE `tbl_organismos` (
   `id_organismo` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'ID del organismo.',
   `nombre_organismo` varchar(128) NOT NULL COMMENT 'Nombre del organismo.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-INSERT INTO `tbl_organismos` (`id_organismo`, `nombre_organismo`) VALUES (1, 'Servicio Desconcentrado de Telecomunicaciones Aragua');
+INSERT INTO `tbl_organismos` (`id_organismo`, `nombre_organismo`) VALUES (1, 'Servicio Desconcentrado de Telecomunicaciones Aragua'), (2, 'Policía Bolivariana de Aragua'), (3, 'Policía Bolivariana Nacional');
 -- ! ------------------------------- !--
 
 -- ! Tablas de los grupos del funcionario

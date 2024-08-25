@@ -51,10 +51,34 @@ export function useOfficer() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    console.log(officerData)
 
     try {
       setIsLoading(true)
+
+      // TODO: VALIDACIONES
+
+      const result = await fetch('http://localhost:3000/api/officers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(officerData),
+      })
+
+      if (result.status === 201) {
+        toast.success(
+          `Funcionario C.I: [${officerData.cedulaOfficer}] registrado con éxito!`
+        )
+      }
+
+      // TODO, crear estos códigos
+      if (result.status === 500) {
+        toast.error(`Error registrando al funcionario.`)
+        return
+      }
+
+      setOfficerData(officerDataInitialState)
+      setErrors(errorsOfficerInitialState)
     } catch (error) {
       console.error(error)
       toast.error(`Error registrando al funcionario.`)

@@ -1,13 +1,32 @@
 import propTypes from 'prop-types'
 import { Input, Select, SelectItem } from '@nextui-org/react'
 
+const STATUS_OFFICER = [
+  { value: 1, label: 'Activo' },
+  { value: 2, label: 'Inactivo' },
+  { value: 3, label: 'Permiso' },
+  { value: 4, label: 'Reposo' },
+  { value: 5, label: 'Vacaciones' },
+]
+const RANGOS_OFFICER = [
+  { value: 1, label: 'Técnico' },
+  { value: 2, label: 'Coordinador' },
+  { value: 3, label: 'Director' },
+  { value: 4, label: 'Gerente' },
+]
+const GRUPOS_OFFICER = [
+  { value: 1, label: 'Dpto. de Sistemas' },
+  { value: 2, label: 'Dpto. de Telecomunicaciones' },
+]
+const ORGANISMOS_OFFICER = [
+  { value: 1, label: 'Servicio Desconcentrado de Telecomunicaciones Aragua' },
+  { value: 2, label: 'Policía Bolivariana de Aragua' },
+  { value: 3, label: 'Policía Bolivariana Nacional' },
+]
+
 export const FormOfficer = ({ officerData, handleChange, errors }) => {
   return (
-    <form
-      // action=""
-      className="form flex flex-col gap-4"
-      autoComplete="off"
-    >
+    <form className="form flex flex-col gap-4" autoComplete="off">
       <div className="flex gap-4">
         <Input
           type="text"
@@ -40,6 +59,7 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           type="text"
           label="Cédula"
           placeholder="V 12.345.678"
+          isRequired
           onChange={handleChange}
           value={officerData.cedulaOfficer}
           name="cedulaOfficer"
@@ -50,6 +70,7 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           type="text"
           label="Número de teléfono"
           placeholder="(414) 123 45 67"
+          isRequired
           onChange={handleChange}
           value={officerData.telefonoOfficer}
           name="telefonoOfficer"
@@ -57,7 +78,7 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           //   maxLength={32}
         />
       </div>
-      <div className="flex gap-4">
+      <div className="grid gap-4 grid-cols-2">
         <Select
           label="Organismo del funcionario"
           isRequired
@@ -67,9 +88,9 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           //   isInvalid={errors.marca.hasError}
           //   errorMessage={errors.marca.message}
         >
-          {/* {MARCAS_RADIOS.map(({ value, label }) => (
+          {ORGANISMOS_OFFICER.map(({ value, label }) => (
             <SelectItem key={value}>{label}</SelectItem>
-          ))} */}
+          ))}
         </Select>
         <Select
           label="Grupo del funcionario"
@@ -80,12 +101,12 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           //   isInvalid={errors.marca.hasError}
           //   errorMessage={errors.marca.message}
         >
-          {/* {MARCAS_RADIOS.map(({ value, label }) => (
+          {GRUPOS_OFFICER.map(({ value, label }) => (
             <SelectItem key={value}>{label}</SelectItem>
-          ))} */}
+          ))}
         </Select>
       </div>
-      <div className="flex gap-4">
+      <div className="grid gap-4 grid-cols-2">
         <Select
           label="Rango del funcionario"
           isRequired
@@ -95,9 +116,9 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           //   isInvalid={errors.marca.hasError}
           //   errorMessage={errors.marca.message}
         >
-          {/* {MARCAS_RADIOS.map(({ value, label }) => (
+          {RANGOS_OFFICER.map(({ value, label }) => (
             <SelectItem key={value}>{label}</SelectItem>
-          ))} */}
+          ))}
         </Select>
         <Select
           label="Status del funcionario"
@@ -108,19 +129,11 @@ export const FormOfficer = ({ officerData, handleChange, errors }) => {
           //   isInvalid={errors.marca.hasError}
           //   errorMessage={errors.marca.message}
         >
-          {/* {MARCAS_RADIOS.map(({ value, label }) => (
+          {STATUS_OFFICER.map(({ value, label }) => (
             <SelectItem key={value}>{label}</SelectItem>
-          ))} */}
+          ))}
         </Select>
       </div>
-      {/* <Textarea
-        maxRows={4}
-        label="Observación"
-        onChange={handleChange}
-        value={officerData.observacionRadio}
-        name="observacionRadio"
-        maxLength={255}
-      /> */}
     </form>
   )
 }
