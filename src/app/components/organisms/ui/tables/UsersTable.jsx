@@ -1,5 +1,4 @@
 'use client'
-
 import propTypes from 'prop-types'
 import {
   Table,
@@ -34,9 +33,9 @@ export const UsersTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    console.log(row)
+    // console.log(row)
   }
-  // const { isOpen, onOpen, onOpenChange } = useDisclosure()
+
   const modalToAddUser = useDisclosure()
   const modalToConfirmDelete = useDisclosure()
 
