@@ -74,15 +74,14 @@ export const OfficersTable = ({
               onClick={() => handleRowSelect(row)}
               className="cursor-pointer"
             >
-              <TableCell>{row.serial}</TableCell>
-              <TableCell>{row.issi}</TableCell>
-              <TableCell>{row.tei}</TableCell>
-              <TableCell>{row.numBien}</TableCell>
-              <TableCell>{row.observacion}</TableCell>
+              <TableCell>{row.nombres}</TableCell>
+              <TableCell>{row.apellidos}</TableCell>
+              <TableCell>{row.cedula}</TableCell>
+              <TableCell>{row.telefono}</TableCell>
               <TableCell>{row.idStatus}</TableCell>
-              <TableCell>{row.idMarca}</TableCell>
-              <TableCell>{row.idModelo}</TableCell>
-              <TableCell>{row.idTipo}</TableCell>
+              <TableCell>{row.idOrganismo}</TableCell>
+              <TableCell>{row.idGrupo}</TableCell>
+              <TableCell>{row.idRango}</TableCell>
             </TableRow>
           ))}
         </TableBody>
