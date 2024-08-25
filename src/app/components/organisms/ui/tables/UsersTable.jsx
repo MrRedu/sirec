@@ -28,8 +28,8 @@ import { FormUser } from '../forms/FormUser'
 export const UsersTable = ({
   ariaLabel = 'Example static collection table',
   color = 'primary',
-  columns,
-  rows,
+  columns = ['Is empty'],
+  rows = [],
 }) => {
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
