@@ -25,7 +25,7 @@ export const NAVIGATION_HEADER = [
     submenu: [
       {
         name: 'Ver todos',
-        href: '/funcionarios',
+        href: '/officer',
       },
       {
         name: 'Organismos y grupos',
