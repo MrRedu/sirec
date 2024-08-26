@@ -9,7 +9,7 @@ export async function GET(req, { params }) {
       [params.email]
     )
 
-    if (result.length === 0) {
+    if (result[0].length === 0) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 })
     }
 

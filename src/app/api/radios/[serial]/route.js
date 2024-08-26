@@ -6,13 +6,10 @@ const tableRadios = 'tbl_radios'
 export async function GET(req, { params }) {
   const query = `SELECT * FROM ${tableRadios} WHERE serial_radio = ?`
   try {
-    const result = await connection.query(query, [params.serial])
+    const [result] = await connection.query(query, [params.serial])
 
-    if (result.length === 0) {
-      return NextResponse.json({
-        message: 'Radio not found',
-        status: 404,
-      })
+    if (result[0].length === 0) {
+      return NextResponse.json({ message: 'Radio not found' }, { status: 404 })
     }
 
     return NextResponse.json(
