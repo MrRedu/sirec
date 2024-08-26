@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getRadio } from '@/services/radios'
 import { toast } from 'sonner'
+import { getRadio } from '@/services/radios'
+import { radioDataInitialState } from '@/utils/const'
 
 export function useUpdateRadio({ serial }) {
-  const [radioData, setRadioData] = useState()
+  const [radioData, setRadioData] = useState(radioDataInitialState)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = e => {
@@ -28,10 +29,10 @@ export function useUpdateRadio({ serial }) {
           issi_radio: radioData.issiRadio,
           num_bien_radio: radioData.numBienRadio,
           observacion_radio: radioData.observacionRadio,
-          id_status_radio: radioData.idStatusRadio,
-          id_organismo_radio: radioData.idOrganismoRadio,
-          id_grupo_radio: radioData.idGrupoRadio,
-          id_rango_radio: radioData.idRangoRadio,
+          id_status_radio: Number(radioData.idStatusRadio),
+          id_marca_radio: Number(radioData.idMarcaRadio),
+          id_modelo_radio: Number(radioData.idModeloRadio),
+          id_tipo_radio: Number(radioData.idTipoRadio),
         }),
       })
 
@@ -58,9 +59,9 @@ export function useUpdateRadio({ serial }) {
         numBienRadio: data[0].num_bien_radio,
         observacionRadio: data[0].observacion_radio,
         idStatusRadio: data[0].id_status_radio,
-        idOrganismoRadio: data[0].id_organismo_radio,
-        idGrupoRadio: data[0].id_grupo_radio,
-        idRangoRadio: data[0].id_rango_radio,
+        idMarcaRadio: data[0].id_marca_radio,
+        idModeloRadio: data[0].id_modelo_radio,
+        idTipoRadio: data[0].id_tipo_radio,
       })
     }
 

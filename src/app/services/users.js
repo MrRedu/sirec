@@ -1,5 +1,11 @@
 import { toast } from 'sonner'
 
+export const getAllUsers = async () => {
+  const res = await fetch('http://localhost:3000/api/users')
+  const users = await res.json()
+  return users
+}
+
 export const deleteUser = async email => {
   if (email === 'eduardo@dev.com') {
     return toast.error('No se puede eliminar este usuario 🤡')

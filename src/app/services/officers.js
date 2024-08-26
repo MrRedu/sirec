@@ -1,7 +1,17 @@
 import { toast } from 'sonner'
 
+export const getOfficer = async ({ cedula }) => {
+  if (!cedula) {
+    return toast.error('Cedula es requerida')
+  }
+
+  const result = await fetch(`http://localhost:3000/api/officers/${cedula}`)
+  const officer = await result.json()
+  return officer
+}
+
 // #TODO: Manejar errores
-export const loadAllOfficers = async () => {
+export const getAllOfficers = async () => {
   const res = await fetch('http://localhost:3000/api/officers')
   const radios = await res.json()
   return radios

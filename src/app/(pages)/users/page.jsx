@@ -1,11 +1,6 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { UsersTable } from '@/components/organisms/ui/tables/UsersTable'
-
-const loadAllUsers = async () => {
-  const res = await fetch('http://localhost:3000/api/users')
-  const users = await res.json()
-  return users
-}
+import { getAllUsers } from '@/services/users'
 
 const usersColumns = ['Nombre', 'Correo electrónico', 'Rol']
 const userRoles = {
@@ -14,7 +9,7 @@ const userRoles = {
   3: 'General',
 }
 export default async function UsersPage() {
-  const { data: users } = await loadAllUsers()
+  const { data: users } = await getAllUsers()
   const mappedUsers = users.map(user => ({
     id: user.id_user,
     name: user.name_user,

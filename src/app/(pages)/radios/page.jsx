@@ -1,6 +1,6 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { RadiosTable } from '@/components/organisms/ui/tables/RadiosTable'
-import { loadAllRadios } from '@/services/radios'
+import { getAllRadios } from '@/services/radios'
 
 const radiosColumns = [
   'Serial',
@@ -44,7 +44,7 @@ const tiposRadio = {
 }
 
 export default async function RadiosPage() {
-  const { data: radios } = await loadAllRadios()
+  const { data: radios } = await getAllRadios()
   // #TODO: Hacer este map dentro de la función, manejando errores y demás
   const mappedRadios = radios.map(radio => ({
     id: radio.id_radio,

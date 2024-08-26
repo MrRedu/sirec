@@ -1,6 +1,6 @@
 import { Section } from '@/components/atoms/ui/Section'
 import { OfficersTable } from '@/components/organisms/ui/tables/OfficersTable'
-import { loadAllOfficers } from '@/services/officers'
+import { getAllOfficers } from '@/services/officers'
 
 const officersColumns = [
   'Nombres',
@@ -41,7 +41,7 @@ const ORGANISMOS_OFFICER = {
 }
 
 export default async function OfficersPage() {
-  const { data: officers } = await loadAllOfficers()
+  const { data: officers } = await getAllOfficers()
   const mappedOfficers = officers.map(officer => ({
     id: officer.id_funcionario,
     cedula: officer.cedula_funcionario,
