@@ -1,12 +1,24 @@
 import { NextResponse } from 'next/server'
 import { connection } from '@/app/libs/mysql'
 
-const queryGetAllUsers = `SELECT * FROM tbl_users`
+// const queryGetAllUsers = `SELECT * FROM tbl_users`
+const query = `
+SELECT 
+  u.id_user,
+  u.email_user,
+  u.password_user,
+  u.name_user,
+  u.created_at,
+  u.updated_at,
+  r.name_rol AS rol_user
+FROM tbl_users u
+JOIN tbl_roles r ON u.id_rol = r.id_rol
+`
 
 // Obtener todos los usuarios
 export async function GET() {
   try {
-    const [result] = await connection.query(queryGetAllUsers)
+    const [result] = await connection.query(query)
 
     return NextResponse.json({ data: result, message: 'OK' }, { status: 200 })
   } catch (error) {

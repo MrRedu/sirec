@@ -3,18 +3,14 @@ import { UsersTable } from '@/components/organisms/ui/tables/UsersTable'
 import { getAllUsers } from '@/services/users'
 
 const usersColumns = ['Nombre', 'Correo electrónico', 'Rol']
-const userRoles = {
-  1: 'Administrador',
-  2: 'Desarrollador',
-  3: 'General',
-}
+
 export default async function UsersPage() {
   const { data: users } = await getAllUsers()
   const mappedUsers = users.map(user => ({
     id: user.id_user,
     name: user.name_user,
     email: user.email_user,
-    idRol: userRoles[user.id_rol] || 'Desconocido',
+    rol: user.rol_user,
   }))
 
   return (
