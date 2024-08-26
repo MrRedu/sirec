@@ -39,9 +39,9 @@ export async function POST(req) {
     const result = await connection.query(query, {
       serial_radio: serialRadio,
       tei_radio: teiRadio,
-      observacion_radio: observacionRadio,
       issi_radio: issiRadio,
       num_bien_radio: numBienRadio,
+      observacion_radio: observacionRadio,
       id_status_radio: Number(idStatusRadio),
       id_marca_radio: Number(idMarcaRadio),
       id_modelo_radio: Number(idModeloRadio),

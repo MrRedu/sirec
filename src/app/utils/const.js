@@ -25,7 +25,7 @@ export const NAVIGATION_HEADER = [
     submenu: [
       {
         name: 'Ver todos',
-        href: '/officer',
+        href: '/officers',
       },
       {
         name: 'Organismos y grupos',
@@ -60,6 +60,7 @@ export const MARCAS_RADIOS = [{ value: 1, label: 'Motorola' }]
 export const MODELOS_RADIOS = [
   { value: 1, label: 'MTP850' },
   { value: 2, label: 'MTP3550' },
+  { value: 3, label: 'MTM5400' },
 ]
 export const TIPOS_RADIOS = [
   { value: 1, label: 'Portátil' },
