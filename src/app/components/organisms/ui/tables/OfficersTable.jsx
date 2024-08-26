@@ -2,6 +2,7 @@
 import propTypes from 'prop-types'
 import {
   Button,
+  Chip,
   Modal,
   ModalBody,
   ModalContent,
@@ -99,7 +100,19 @@ export const OfficersTable = ({
               <TableCell>{row.apellidos}</TableCell>
               <TableCell>{row.cedula}</TableCell>
               <TableCell>{row.telefono}</TableCell>
-              <TableCell>{row.status}</TableCell>
+              <TableCell>
+                <Chip
+                  classNames={{
+                    base: `
+                      bg-amber-300 text-amber-900
+                      ${row.status === 'Activo' && 'bg-green-300 text-green-900'}
+                      ${row.status === 'Inactivo' && 'bg-red-300 text-red-900'}
+                          `,
+                  }}
+                >
+                  {row.status}
+                </Chip>
+              </TableCell>
               <TableCell>{row.organismo}</TableCell>
               <TableCell>{row.grupo}</TableCell>
               <TableCell>{row.rango}</TableCell>

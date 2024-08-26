@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Chip,
 } from '@nextui-org/react'
 
 import { Pencil, Plus, Trash2 } from 'lucide-react'
@@ -99,7 +100,19 @@ export const UsersTable = ({
             >
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.email}</TableCell>
-              <TableCell>{row.idRol}</TableCell>
+              <TableCell>
+                <Chip
+                  classNames={{
+                    base: `
+                    ${row.rol === 'Administrador' && 'bg-green-300 text-green-900'}
+                    ${row.rol === 'Desarrollador' && 'bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30 text-white'}
+                    ${row.rol === 'General' && 'bg-blue-300 text-blue-900'}
+                    `,
+                  }}
+                >
+                  {row.rol}
+                </Chip>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

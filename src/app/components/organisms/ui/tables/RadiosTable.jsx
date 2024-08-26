@@ -2,6 +2,7 @@
 import propTypes from 'prop-types'
 import {
   Button,
+  Chip,
   Modal,
   ModalBody,
   ModalContent,
@@ -115,7 +116,26 @@ export const RadiosTable = ({
               <TableCell>{row.tei}</TableCell>
               <TableCell>{row.numBien}</TableCell>
               <TableCell>{row.observacion}</TableCell>
-              <TableCell>{row.status}</TableCell>
+              <TableCell>
+                <Chip
+                  classNames={{
+                    base: `
+                    ${row.status === 'Operativo' && 'bg-green-300 text-green-900'}
+                    ${row.status === 'Inoperativo' && 'bg-red-300 text-red-900'}
+                    ${row.status === 'Entregado' && 'bg-blue-300 text-blue-900'}
+                    ${row.status === 'Vacaciones' && 'bg-blue-300 text-blue-900'}
+                    ${row.status === 'Extraviado' && 'bg-orange-300 text-orange-900'}
+                    ${row.status === 'Externo' && 'bg-purple-300 text-purple-900'}
+                    ${row.status === 'En mantenimiento' && 'bg-orange-300 text-orange-900'}
+                    ${row.status === 'En garantía' && 'bg-orange-300 text-orange-900'}
+                    ${row.status === 'Desincorporado' && 'bg-red-300 text-red-900'}
+                    ${row.status === 'En depósito' || (row.status === 'En depósito' && '')}
+                    `,
+                  }}
+                >
+                  {row.status}
+                </Chip>
+              </TableCell>
               <TableCell>{row.marca}</TableCell>
               <TableCell>{row.modelo}</TableCell>
               <TableCell>{row.tipo}</TableCell>
