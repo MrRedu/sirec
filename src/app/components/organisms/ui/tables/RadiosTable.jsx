@@ -115,10 +115,10 @@ export const RadiosTable = ({
               <TableCell>{row.tei}</TableCell>
               <TableCell>{row.numBien}</TableCell>
               <TableCell>{row.observacion}</TableCell>
-              <TableCell>{row.idStatus}</TableCell>
-              <TableCell>{row.idMarca}</TableCell>
-              <TableCell>{row.idModelo}</TableCell>
-              <TableCell>{row.idTipo}</TableCell>
+              <TableCell>{row.status}</TableCell>
+              <TableCell>{row.marca}</TableCell>
+              <TableCell>{row.modelo}</TableCell>
+              <TableCell>{row.tipo}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -2,11 +2,30 @@ import { NextResponse } from 'next/server'
 import { connection } from '@/libs/mysql'
 
 const tableRadios = 'tbl_radios'
-const queryGetAllRadios = `SELECT * FROM ${tableRadios}`
+// const queryGetAllRadios = `SELECT * FROM ${tableRadios}`
+
+const query = `
+  SELECT 
+    r.id_radio,
+    r.serial_radio,
+    r.tei_radio,
+    r.issi_radio,
+    r.num_bien_radio,
+    r.observacion_radio,
+    s.nombre_status AS status_radio,
+    m.nombre_marca AS marca_radio,
+    mo.nombre_modelo AS modelo_radio,
+    t.nombre_tipo AS tipo_radio
+  FROM tbl_radios r
+  JOIN tbl_status_radio s ON r.id_status_radio = s.id_status_radio
+  JOIN tbl_marcas m ON r.id_marca_radio = m.id_marca
+  JOIN tbl_modelos mo ON r.id_modelo_radio = mo.id_modelo
+  JOIN tbl_tipos t ON r.id_tipo_radio = t.id_tipo
+`
 
 export async function GET() {
   try {
-    const [result] = await connection.query(queryGetAllRadios)
+    const [result] = await connection.query(query)
 
     return NextResponse.json({ data: result, message: 'OK' }, { status: 200 })
   } catch (error) {
