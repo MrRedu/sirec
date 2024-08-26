@@ -20,6 +20,7 @@ import { Title } from '@/components/atoms/ui/Title'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { FormOfficer } from '../forms/FormOfficer'
 import { useOfficer } from '@/hooks/useOfficer'
+import { deleteOfficer } from '@/services/officers'
 
 export const OfficersTable = ({
   ariaLabel = 'Example static collection table',
@@ -166,11 +167,10 @@ export const OfficersTable = ({
           {onClose => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {`Eliminar radio`}
-                EPA AQUI PENDIENTE CAMBIAR
+                {`Eliminar funcionario`}
               </ModalHeader>
               <ModalBody>
-                <p>{`¿Estás seguro de borrar el radio ${selectedRow.serial}?`}</p>
+                <p>{`¿Estás seguro de borrar al funcionario C.I: ${selectedRow.cedula}?`}</p>
               </ModalBody>
               <ModalFooter>
                 <Button
@@ -185,8 +185,7 @@ export const OfficersTable = ({
                 <Button
                   color="primary"
                   onClick={() => {
-                    // TODO: Hacer esta funcion
-                    // deleteOfficer(selectedRow.cedula)
+                    deleteOfficer(selectedRow.cedula)
                     onClose()
                   }}
                 >

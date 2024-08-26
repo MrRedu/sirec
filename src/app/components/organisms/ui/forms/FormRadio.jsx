@@ -26,7 +26,7 @@ export const FormRadio = ({ radioData, handleChange, errors }) => {
         isInvalid={errors.serial.hasError}
         errorMessage={errors.serial.message}
       />
-      <div className="flex gap-4">
+      <div className="grid gap-4 grid-cols-2">
         <Input
           type="text"
           label="TEI"
@@ -48,7 +48,7 @@ export const FormRadio = ({ radioData, handleChange, errors }) => {
           maxLength={32}
         />
       </div>
-      <div className="flex gap-4">
+      <div className="grid gap-4 grid-cols-2">
         <Select
           label="Selecciona una marca"
           isRequired
@@ -76,7 +76,7 @@ export const FormRadio = ({ radioData, handleChange, errors }) => {
           ))}
         </Select>
       </div>
-      <div className="flex gap-4">
+      <div className="grid gap-4 grid-cols-2">
         <Select
           label="Selecciona una tipo"
           isRequired

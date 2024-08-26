@@ -1,5 +1,15 @@
 import { toast } from 'sonner'
 
+export const getRadio = async ({ serial }) => {
+  if (!serial) {
+    return toast.error('Serial es requerido')
+  }
+
+  const result = await fetch(`http://localhost:3000/api/radios/${serial}`)
+  const radio = await result.json()
+  return radio
+}
+
 // #TODO: Manejar errores
 export const loadAllRadios = async () => {
   const res = await fetch('http://localhost:3000/api/radios')

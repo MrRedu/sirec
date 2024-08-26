@@ -47,6 +47,11 @@ export function useRadio() {
     setRadioData(prev => ({ ...prev, [name]: value }))
   }
 
+  // const handleUpdate = e => {
+  //   const { name, value } = e.target
+  //   setRadioData(prev => ({ ...prev, [name]: value }))
+  // }
+
   const handleSubmit = async e => {
     e.preventDefault()
 

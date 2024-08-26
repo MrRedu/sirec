@@ -23,6 +23,8 @@ import { Title } from '@/components/atoms/ui/Title'
 import { deleteRadio } from '@/services/radios'
 import { FormRadio } from '../forms/FormRadio'
 import { useRadio } from '@/hooks/useRadio'
+import { UpdateFormRadio } from '../forms/UpdateFormRadio'
+import { useUpdateRadio } from '@/hooks/useUpdateRadio'
 
 export const RadiosTable = ({
   ariaLabel = 'Example static collection table',
@@ -33,11 +35,12 @@ export const RadiosTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    // console.log(selectedRow)
+    console.log(selectedRow)
   }
 
   const modalToAddRadio = useDisclosure()
   const modalToConfirmDelete = useDisclosure()
+  const modalToUpdateRadio = useDisclosure()
 
   const {
     radioData,
@@ -47,6 +50,15 @@ export const RadiosTable = ({
     handleSubmit,
     errors,
   } = useRadio()
+
+  const {
+    isLoading: isLoadingUpdate,
+    radioData: radioDataUpdate,
+    handleChange: handleChangeUpdate,
+    handleSubmit: handleSubmitUpdate,
+  } = useUpdateRadio({
+    serial: selectedRow?.serial,
+  })
 
   return (
     <>
@@ -64,6 +76,7 @@ export const RadiosTable = ({
             aria-label="Editar"
             variant={selectedRow ? 'flat' : 'light'}
             isDisabled={!selectedRow}
+            onPress={modalToUpdateRadio.onOpen}
           >
             <Pencil />
           </Button>
@@ -193,6 +206,51 @@ export const RadiosTable = ({
                   }}
                 >
                   {`Eliminar radio`}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* Modal to update radio */}
+      <Modal
+        isOpen={modalToUpdateRadio.isOpen}
+        onOpenChange={modalToUpdateRadio.onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+        scrollBehavior={'inside'}
+        backdrop={'blur'}
+        size="xl"
+      >
+        <ModalContent>
+          {onClose => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                {`Editar radio`}
+              </ModalHeader>
+              <ModalBody>
+                <UpdateFormRadio
+                  isLoading={isLoadingUpdate}
+                  radioData={radioDataUpdate}
+                  handleChange={handleChangeUpdate}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {
+                    onClose()
+                  }}
+                >
+                  {`Cerrar`}
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={handleSubmitUpdate}
+                  isLoading={isLoadingUpdate}
+                >
+                  {isLoadingUpdate ? 'Actualizando...' : `Actualizar radio`}
                 </Button>
               </ModalFooter>
             </>
