@@ -99,10 +99,10 @@ export const OfficersTable = ({
               <TableCell>{row.apellidos}</TableCell>
               <TableCell>{row.cedula}</TableCell>
               <TableCell>{row.telefono}</TableCell>
-              <TableCell>{row.idStatus}</TableCell>
-              <TableCell>{row.idOrganismo}</TableCell>
-              <TableCell>{row.idGrupo}</TableCell>
-              <TableCell>{row.idRango}</TableCell>
+              <TableCell>{row.status}</TableCell>
+              <TableCell>{row.organismo}</TableCell>
+              <TableCell>{row.grupo}</TableCell>
+              <TableCell>{row.rango}</TableCell>
             </TableRow>
           ))}
         </TableBody>

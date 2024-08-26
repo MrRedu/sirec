@@ -2,11 +2,30 @@ import { NextResponse } from 'next/server'
 import { connection } from '@/libs/mysql'
 
 const tableOfficers = 'tbl_funcionarios'
-const queryGetAllOfficers = `SELECT * FROM tbl_funcionarios`
+
+const query = `
+SELECT 
+  f.id_funcionario,
+  f.cedula_funcionario,
+  f.nombres_funcionario,
+  f.apellidos_funcionario,
+  f.telefono_funcionario,
+  f.created_at,
+  f.updated_at,
+  s.nombre_status AS status_funcionario,
+  o.nombre_organismo AS organismo_funcionario,
+  g.nombre_grupo AS grupo_funcionario,
+  r.nombre_rango AS rango_funcionario
+FROM tbl_funcionarios f
+JOIN tbl_status_funcionario s ON f.id_status_funcionario = s.id_status_funcionario
+JOIN tbl_organismos o ON f.id_organismo_funcionario = o.id_organismo
+JOIN tbl_grupos g ON f.id_grupo_funcionario = g.id_grupo
+JOIN tbl_rangos r ON f.id_rango_funcionario = r.id_rango
+`
 
 export async function GET() {
   try {
-    const [result] = await connection.query(queryGetAllOfficers)
+    const [result] = await connection.query(query)
 
     return NextResponse.json({ data: result, message: 'OK' }, { status: 200 })
   } catch (error) {
