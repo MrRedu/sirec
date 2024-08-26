@@ -1,4 +1,5 @@
 import { toast } from 'sonner'
+import { ONE_HOUR_IN_MILLISECONDS } from '@/utils/const'
 
 export const getRadio = async ({ serial }) => {
   if (!serial) {
@@ -20,7 +21,9 @@ export const getAllRadios = async () => {
 }
 
 export const howManyRadiosRegistered = async () => {
-  const result = await fetch('http://localhost:3000/api/radios/count')
+  const result = await fetch('http://localhost:3000/api/radios/count', {
+    next: { revalidate: ONE_HOUR_IN_MILLISECONDS * 2 },
+  })
   const { count } = await result.json()
   return count
 }

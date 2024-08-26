@@ -1,4 +1,5 @@
 import { toast } from 'sonner'
+import { ONE_HOUR_IN_MILLISECONDS } from '@/utils/const'
 
 export const getOfficer = async ({ cedula }) => {
   if (!cedula) {
@@ -36,4 +37,12 @@ export const deleteOfficer = async cedula => {
   if (result.ok) {
     return toast.success(`El funcionario C.I: ${cedula} ha sido eliminado`)
   }
+}
+
+export const howManyOfficersRegistered = async () => {
+  const result = await fetch('http://localhost:3000/api/officers/count', {
+    next: { revalidate: ONE_HOUR_IN_MILLISECONDS * 2 },
+  })
+  const { count } = await result.json()
+  return count
 }
