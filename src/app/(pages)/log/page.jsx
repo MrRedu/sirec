@@ -96,13 +96,28 @@ const registros = [
     date: '19/8/2024, 8:05:00 p. m.',
     action: 'Inicio de sesión',
   },
+  {
+    user: 'maria@admin.com',
+    date: '19/8/2024, 8:00:00 p. m.',
+    action: 'Cambio de estado de [890TPA1040] a [OPERATIVO]',
+  },
+  {
+    user: 'maria@admin.com',
+    date: '19/8/2024, 7:55:00 p. m.',
+    action: 'Cierre de sesión',
+  },
+  {
+    user: 'maria@admin.com',
+    date: '19/8/2024, 7:50:00 p. m.',
+    action: 'Inicio de sesión',
+  },
 ]
 
 export default function LogPage() {
   return (
     <Section>
       <Title className="mb-4">{`Bitácora`}</Title>
-      <Table isStriped aria-label="Example static collection table">
+      <Table isStriped aria-label="Tabla para mostrar la bitácora">
         <TableHeader>
           <TableColumn>Usuario</TableColumn>
           <TableColumn>Fecha</TableColumn>
