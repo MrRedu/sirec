@@ -35,7 +35,6 @@ export const RadiosTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    console.log(selectedRow)
   }
 
   const modalToAddRadio = useDisclosure()

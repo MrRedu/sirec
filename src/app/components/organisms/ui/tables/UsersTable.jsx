@@ -33,7 +33,6 @@ export const UsersTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    // console.log(row)
   }
 
   const modalToAddUser = useDisclosure()

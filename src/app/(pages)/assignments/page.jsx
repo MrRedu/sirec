@@ -14,7 +14,6 @@ const assignmentsColumns = [
 
 export default async function AssignmentsPage() {
   const { data: assignments } = await getAllAssignments()
-  console.log(assignments)
   const mappedAssignments = assignments.map(assignment => ({
     id: assignment.id_asignacion,
     cedula: assignment.cedula_funcionario,
