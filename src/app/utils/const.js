@@ -47,17 +47,17 @@ export const TIPOS_RADIOS = [
   { value: 3, label: 'Fijo' },
 ]
 export const STATUS_RADIOS = [
-  { value: 1, label: 'Desincorporado' },
-  { value: 2, label: 'En depósito' },
-  { value: 3, label: 'En garantía' },
-  { value: 4, label: 'En reparación' },
-  { value: 5, label: 'Entregado' },
+  { value: 1, label: 'Operativo' },
+  { value: 2, label: 'Inoperativo' },
+  { value: 3, label: 'Entregado' },
+  { value: 4, label: 'Nuevo' },
+  { value: 5, label: 'Vacaciones' },
   { value: 6, label: 'Extraviado' },
   { value: 7, label: 'Externo' },
-  { value: 8, label: 'Inoperativo' },
-  { value: 9, label: 'Nuevo' },
-  { value: 10, label: 'Operativo' },
-  { value: 11, label: 'Vacaciones' },
+  { value: 8, label: 'En mantenimiento' },
+  { value: 9, label: 'En garantía' },
+  { value: 10, label: 'Desincorporado' },
+  { value: 11, label: 'En depósito' },
 ]
 
 export const radioDataInitialState = {
@@ -71,3 +71,6 @@ export const radioDataInitialState = {
   idModeloRadio: 0,
   idTipoRadio: 0,
 }
+
+
+export const ONE_HOUR_IN_MILLISECONDS = 60 * 60 * 1000

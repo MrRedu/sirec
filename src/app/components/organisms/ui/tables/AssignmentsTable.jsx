@@ -19,6 +19,8 @@ import { Title } from '@/components/atoms/ui/Title'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { FormAssignment } from '../forms/FormAssignment'
+import { deleteAssignment } from '@/services/assignments'
+import { useAssignments } from '@/hooks/useAssignments'
 
 export const AssignmentsTable = ({
   ariaLabel = 'Example static collection table',
@@ -29,11 +31,27 @@ export const AssignmentsTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    console.log(selectedRow)
+    // console.log(selectedRow)
   }
 
   const modalToAddAssignment = useDisclosure()
   const modalToConfirmDelete = useDisclosure()
+
+  const {
+    serial,
+    cedula,
+    errors,
+    handleChange,
+    isLoadingSerial,
+    isLoadingCedula,
+    handleSubmitSerial,
+    handleSubmitCedula,
+    handleSubmit,
+    isLoading,
+    handleReset,
+  } = useAssignments()
+
+  console.log(isLoading)
 
   return (
     <>
@@ -118,14 +136,24 @@ export const AssignmentsTable = ({
                 {`Crear asignación`}
               </ModalHeader>
               <ModalBody>
-                <FormAssignment />
+                <FormAssignment
+                  serial={serial}
+                  cedula={cedula}
+                  errors={errors}
+                  handleChange={handleChange}
+                  isLoadingSerial={isLoadingSerial}
+                  isLoadingCedula={isLoadingCedula}
+                  handleSubmitSerial={handleSubmitSerial}
+                  handleSubmitCedula={handleSubmitCedula}
+                  handleSubmit={handleSubmit}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button
                   color="danger"
                   variant="light"
                   onPress={() => {
-                    // handleReset()
+                    handleReset()
                     onClose()
                   }}
                 >
@@ -133,11 +161,56 @@ export const AssignmentsTable = ({
                 </Button>
                 <Button
                   color="primary"
-                  //   onClick={handleSubmit}
-                  //   isLoading={isLoading}
+                  onClick={e => {
+                    handleSubmit(e)
+                    onClose()
+                  }}
+                  isLoading={isLoading}
+                  isDisabled={errors.cedula.color === 'default'}
                 >
-                  {/* {isLoading ? 'Creando...' : `Crear usuario`} */}
-                  Cambiar esto mi pana
+                  {isLoading ? 'Asignando...' : `Crear asignación`}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      {/* Modal to confirm delete */}
+      <Modal
+        isOpen={modalToConfirmDelete.isOpen}
+        onOpenChange={modalToConfirmDelete.onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+        scrollBehavior={'inside'}
+        backdrop={'blur'}
+      >
+        <ModalContent>
+          {onClose => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                {`Eliminar radio`}
+              </ModalHeader>
+              <ModalBody>
+                <p>{`¿Estás seguro de borrar la asignación del ${selectedRow.serial} con la cedula ${selectedRow.cedula}?`}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {
+                    onClose()
+                  }}
+                >
+                  {`Cerrar`}
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    deleteAssignment(selectedRow.id)
+                    onClose()
+                  }}
+                >
+                  {`Eliminar radio`}
                 </Button>
               </ModalFooter>
             </>

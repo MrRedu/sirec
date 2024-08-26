@@ -53,15 +53,15 @@ export function useUpdateRadio({ serial }) {
     const getRadioData = async () => {
       const { data } = await getRadio({ serial })
       setRadioData({
-        serialRadio: data[0].serial_radio,
-        teiRadio: data[0].tei_radio,
-        issiRadio: data[0].issi_radio,
-        numBienRadio: data[0].num_bien_radio,
-        observacionRadio: data[0].observacion_radio,
-        idStatusRadio: data[0].id_status_radio,
-        idMarcaRadio: data[0].id_marca_radio,
-        idModeloRadio: data[0].id_modelo_radio,
-        idTipoRadio: data[0].id_tipo_radio,
+        serialRadio: data.serial_radio,
+        teiRadio: data.tei_radio,
+        issiRadio: data.issi_radio,
+        numBienRadio: data.num_bien_radio,
+        observacionRadio: data.observacion_radio,
+        idStatusRadio: data.id_status_radio,
+        idMarcaRadio: data.id_marca_radio,
+        idModeloRadio: data.id_modelo_radio,
+        idTipoRadio: data.id_tipo_radio,
       })
     }
 

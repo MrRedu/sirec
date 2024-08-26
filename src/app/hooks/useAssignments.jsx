@@ -3,30 +3,32 @@ import { getRadio } from '@/services/radios'
 import { getOfficer } from '@/services/officers'
 import { toast } from 'sonner'
 
+const errorsAssignment = {
+  serial: {
+    hasError: false,
+    message: '',
+    color: 'default',
+    showButton: true,
+  },
+  cedula: {
+    hasError: false,
+    message: '',
+    color: 'default',
+    showButton: true,
+  },
+}
+
 export function useAssignments() {
   const [serial, setSerial] = useState('')
-  const [isLoadingSerial, setIsLoadingSerial] = useState(false)
   const [cedula, setCedula] = useState('')
-  const [isLoadingCedula, setIsLoadingCedula] = useState(false)
-  const [errors, setErrors] = useState({
-    serial: {
-      hasError: false,
-      message: '',
-      color: 'default',
-      showButton: true,
-    },
-    cedula: {
-      hasError: false,
-      message: '',
-      color: 'default',
-      showButton: true,
-    },
-  })
   const [data, setData] = useState({
     idRadio: '',
     idFuncionario: '',
   })
+  const [isLoadingSerial, setIsLoadingSerial] = useState(false)
+  const [isLoadingCedula, setIsLoadingCedula] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState(errorsAssignment)
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -107,14 +109,13 @@ export function useAssignments() {
     }
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    console.log(data)
+
     if (!data.idRadio || !data.idFuncionario) return
     try {
       setIsLoading(true)
-
-      const result = fetch('http://localhost:3000/api/assignments', {
+      const result = await fetch('http://localhost:3000/api/assignments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,13 +130,36 @@ export function useAssignments() {
 
       if (result.status === 500) {
         toast.error(`Error registrando la asignación.`)
-        // return
       }
     } catch (e) {
       console.error(e)
+      toast.error(`Error registrando la asignación.`)
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const handleReset = () => {
+    setSerial('')
+    setCedula('')
+    setData({
+      idRadio: '',
+      idFuncionario: '',
+    })
+    setErrors({
+      serial: {
+        hasError: false,
+        message: '',
+        color: 'default',
+        showButton: true,
+      },
+      cedula: {
+        hasError: false,
+        message: '',
+        color: 'default',
+        showButton: true,
+      },
+    })
   }
 
   return {
@@ -149,5 +173,6 @@ export function useAssignments() {
     handleSubmitCedula,
     handleSubmit,
     isLoading,
+    handleReset,
   }
 }
