@@ -1,7 +1,14 @@
 'use client'
 import propTypes from 'prop-types'
-import { Input, Textarea } from '@nextui-org/react'
+import { Input, Select, SelectItem, Textarea } from '@nextui-org/react'
+import {
+  MARCAS_RADIOS,
+  MODELOS_RADIOS,
+  STATUS_RADIOS,
+  TIPOS_RADIOS,
+} from '@/utils/const'
 
+// TODO: Hacer skeleton mientras carga la data
 export const UpdateFormRadio = ({ isLoading, radioData, handleChange }) => {
   return (
     radioData && (
@@ -38,71 +45,71 @@ export const UpdateFormRadio = ({ isLoading, radioData, handleChange }) => {
               type="text"
               label="ISSI"
               placeholder="20240101"
-              // onChange={handleChange}
+              onChange={handleChange}
               value={radioData.issiRadio}
               name="issiRadio"
               min={0}
               maxLength={32}
             />
           </div>
-          {/* <div className="grid gap-4 grid-cols-2">
-        <Select
-          label="Selecciona una marca"
-          isRequired
-          // onChange={handleChange}
-          selectedKeys={[radioData.idMarcaRadio]}
-          name="idMarcaRadio"
-          //   isInvalid={errors.marca.hasError}
-          //   errorMessage={errors.marca.message}
-        >
-          {MARCAS_RADIOS.map(({ value, label }) => (
-            <SelectItem key={value}>{label}</SelectItem>
-          ))}
-        </Select>
-        <Select
-          label="Selecciona un modelo"
-          isRequired
-          // onChange={handleChange}
-          selectedKeys={[radioData.idModeloRadio]}
-          name="idModeloRadio"
-          //   isInvalid={errors.modelo.hasError}
-          //   errorMessage={errors.modelo.message}
-        >
-          {MODELOS_RADIOS.map(({ value, label }) => (
-            <SelectItem key={value}>{label}</SelectItem>
-          ))}
-        </Select>
-      </div>
-      <div className="grid gap-4 grid-cols-2">
-        <Select
-          label="Selecciona una tipo"
-          isRequired
-          // onChange={handleChange}
-          selectedKeys={[radioData.idTipoRadio]}
-          name="idTipoRadio"
-          //   isInvalid={errors.tipo.hasError}
-          //   errorMessage={errors.tipo.message}
-        >
-          {TIPOS_RADIOS.map(({ value, label }) => (
-            <SelectItem key={value}>{label}</SelectItem>
-          ))}
-        </Select>
-        <Select
-          label="Selecciona un estado"
-          isRequired
-          // onChange={handleChange}
-          selectedKeys={[radioData.idStatusRadio]}
-          name="idStatusRadio"
-          //   isInvalid={errors.status.hasError}
-          //   errorMessage={errors.status.message}
-        >
-          {STATUS_RADIOS.map(({ value, label }) => (
-            <SelectItem key={value} d>
-              {label}
-            </SelectItem>
-          ))}
-        </Select>
-      </div> */}
+          <div className="grid gap-4 grid-cols-2">
+            <Select
+              label="Selecciona una marca"
+              isRequired
+              onChange={handleChange}
+              // TODO: ¿Por qué necesito convertir a string? En RadioForm no es un string
+              selectedKeys={[`${radioData.idMarcaRadio}`]}
+              name="idMarcaRadio"
+              //   isInvalid={errors.marca.hasError}
+              //   errorMessage={errors.marca.message}
+            >
+              {MARCAS_RADIOS.map(({ value, label }) => (
+                <SelectItem key={value}>{label}</SelectItem>
+              ))}
+            </Select>
+            <Select
+              label="Selecciona un modelo"
+              isRequired
+              onChange={handleChange}
+              // TODO: ¿Por qué necesito convertir a string? En RadioForm no es un string
+              selectedKeys={[`${radioData.idModeloRadio}`]}
+              name="idModeloRadio"
+              //   isInvalid={errors.modelo.hasError}
+              //   errorMessage={errors.modelo.message}
+            >
+              {MODELOS_RADIOS.map(({ value, label }) => (
+                <SelectItem key={value}>{label}</SelectItem>
+              ))}
+            </Select>
+          </div>
+          <div className="grid gap-4 grid-cols-2">
+            <Select
+              label="Selecciona una tipo"
+              isRequired
+              onChange={handleChange}
+              selectedKeys={[`${radioData.idTipoRadio}`]}
+              name="idTipoRadio"
+              //   isInvalid={errors.tipo.hasError}
+              //   errorMessage={errors.tipo.message}
+            >
+              {TIPOS_RADIOS.map(({ value, label }) => (
+                <SelectItem key={value}>{label}</SelectItem>
+              ))}
+            </Select>
+            <Select
+              label="Selecciona un estado"
+              isRequired
+              onChange={handleChange}
+              selectedKeys={[`${radioData.idStatusRadio}`]}
+              name="idStatusRadio"
+              //   isInvalid={errors.status.hasError}
+              //   errorMessage={errors.status.message}
+            >
+              {STATUS_RADIOS.map(({ value, label }) => (
+                <SelectItem key={value}>{label}</SelectItem>
+              ))}
+            </Select>
+          </div>
           <Textarea
             maxRows={4}
             label="Observación"

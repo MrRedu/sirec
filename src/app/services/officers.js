@@ -1,7 +1,7 @@
 import { toast } from 'sonner'
 
 // #TODO: Manejar errores
-export const loadAllOfficers = async () => {
+export const getAllOfficers = async () => {
   const res = await fetch('http://localhost:3000/api/officers')
   const radios = await res.json()
   return radios

@@ -1,18 +1,8 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { radioDataInitialState } from '@/utils/const'
 
-export const radioDataInitialState = {
-  serialRadio: '',
-  teiRadio: '',
-  observacionRadio: '',
-  issiRadio: '',
-  numBienRadio: '',
-  idStatusRadio: 0,
-  idMarcaRadio: 0,
-  idModeloRadio: 0,
-  idTipoRadio: 0,
-  // idUsuario: 0,
-}
+
 
 export const errorsRadioInitialState = {
   serial: {

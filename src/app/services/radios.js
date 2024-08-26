@@ -11,8 +11,10 @@ export const getRadio = async ({ serial }) => {
 }
 
 // #TODO: Manejar errores
-export const loadAllRadios = async () => {
-  const res = await fetch('http://localhost:3000/api/radios')
+export const getAllRadios = async () => {
+  const res = await fetch('http://localhost:3000/api/radios', {
+    next: { revalidate: 10 },
+  })
   const radios = await res.json()
   return radios
 }
