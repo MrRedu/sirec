@@ -1,33 +1,92 @@
 import { Section } from '@/components/atoms/ui/Section'
-import { Button, Card, CardFooter, Image } from '@nextui-org/react'
 import { Title } from '@/components/atoms/ui/Title'
+import {
+  CalendarArrowDown,
+  FileText,
+  RadioTower,
+  SquareUser,
+  UsersRound,
+} from 'lucide-react'
+import { CardReport } from '@/components/molecules/CardReport'
+
+const administrative = [
+  {
+    id: 'users',
+    title: 'Usuarios',
+    subtitle: 'Reporte de usuarios registrados',
+    icon: <UsersRound size={36} className="text-blue-600 min-w-9 min-h-9" />,
+  },
+  {
+    id: 'log',
+    title: 'Bitácora',
+    subtitle: 'Filtra por rango de fechas',
+    icon: (
+      <CalendarArrowDown size={36} className="text-blue-600 min-w-9 min-h-9" />
+    ),
+  },
+]
+
+const technical = [
+  {
+    id: 'radios',
+    title: 'Radios',
+    subtitle: 'Filtrar por marca y modelo',
+    icon: <RadioTower size={36} className="text-blue-600 min-w-9 min-h-9" />,
+  },
+  {
+    id: 'assignments',
+    title: 'Asignaciones',
+    subtitle: 'Filtra por ID de asignación',
+    icon: <FileText size={36} className="text-blue-600 min-w-9 min-h-9" />,
+  },
+  {
+    id: 'officers',
+    title: 'Funcionarios',
+    subtitle: 'Filtrar por funcionario',
+    icon: <SquareUser size={36} className="text-blue-600 min-w-9 min-h-9" />,
+  },
+]
 
 export default function ReportsPage() {
   return (
     <Section>
-      <div className="flex items-center mb-4">
-        <Title>{`Reportes`}</Title>
+      <Title className="mb-4">{`Reportes`}</Title>
+
+      <div className="flex flex-col gap-4 mb-6">
+        <Title isH3 className="font-normal text-xl">
+          Administrativas
+        </Title>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {administrative.map(({ id, title, subtitle, icon }) => {
+            return (
+              <CardReport
+                key={id}
+                title={title}
+                subtitle={subtitle}
+                icon={icon}
+              />
+            )
+          })}
+        </div>
       </div>
 
-      <Card
-        isFooterBlurred
-        radius="lg"
-        className="border-none max-w-[200px] max-h-[200px] bg-slate-500"
-      >
-        <Image width={200} height={200} src="/users.svg" alt="Users image" />
-        <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-          <p className="text-tiny text-white/80">{`Usuarios`}</p>
-          <Button
-            className="text-tiny text-white bg-black/20"
-            variant="flat"
-            color="default"
-            radius="lg"
-            size="sm"
-          >
-            {`Generar reporte`}
-          </Button>
-        </CardFooter>
-      </Card>
+      <div className="flex flex-col gap-4">
+        <Title isH3 className="font-normal text-xl">
+          Técnicas
+        </Title>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {technical.map(({ id, title, subtitle, icon }) => {
+            return (
+              <CardReport
+                key={id}
+                title={title}
+                subtitle={subtitle}
+                icon={icon}
+              />
+            )
+          })}
+        </div>
+      </div>
     </Section>
   )
 }
