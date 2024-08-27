@@ -1,3 +1,5 @@
+'use client'
+// TODO: BUSCAR LA MANERA DE HACER ESTA PÁGINA SSR
 import { Section } from '@/components/atoms/ui/Section'
 import { Title } from '@/components/atoms/ui/Title'
 import {
@@ -9,12 +11,29 @@ import {
 } from 'lucide-react'
 import { CardReport } from '@/components/molecules/CardReport'
 
+const handleDownloadExcel = ({ endpoint, fileName }) => {
+  const url = `/api/generate-excel/${endpoint}`
+
+  // Crea un enlace y simula un clic para descargar el archivo
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${fileName}.xlsx` // Nombre sugerido para el archivo
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+
 const administrative = [
   {
     id: 'users',
     title: 'Usuarios',
     subtitle: 'Reporte de usuarios registrados',
     icon: <UsersRound size={36} className="text-blue-600 min-w-9 min-h-9" />,
+    onClick: () =>
+      handleDownloadExcel({
+        endpoint: 'users',
+        fileName: 'usuarios',
+      }),
   },
   {
     id: 'log',
@@ -32,18 +51,33 @@ const technical = [
     title: 'Radios',
     subtitle: 'Filtrar por marca y modelo',
     icon: <RadioTower size={36} className="text-blue-600 min-w-9 min-h-9" />,
+    onClick: () =>
+      handleDownloadExcel({
+        endpoint: 'radios',
+        fileName: 'radios',
+      }),
   },
   {
     id: 'assignments',
     title: 'Asignaciones',
     subtitle: 'Filtra por ID de asignación',
     icon: <FileText size={36} className="text-blue-600 min-w-9 min-h-9" />,
+    onClick: () =>
+      handleDownloadExcel({
+        endpoint: 'assignments',
+        fileName: 'asignaciones',
+      }),
   },
   {
     id: 'officers',
     title: 'Funcionarios',
     subtitle: 'Filtrar por funcionario',
     icon: <SquareUser size={36} className="text-blue-600 min-w-9 min-h-9" />,
+    onClick: () =>
+      handleDownloadExcel({
+        endpoint: 'officers',
+        fileName: 'funcionarios',
+      }),
   },
 ]
 
@@ -57,13 +91,14 @@ export default function ReportsPage() {
           Administrativas
         </Title>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {administrative.map(({ id, title, subtitle, icon }) => {
+          {administrative.map(({ id, title, subtitle, icon, onClick }) => {
             return (
               <CardReport
                 key={id}
                 title={title}
                 subtitle={subtitle}
                 icon={icon}
+                onClick={onClick}
               />
             )
           })}
@@ -75,13 +110,14 @@ export default function ReportsPage() {
           Técnicas
         </Title>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {technical.map(({ id, title, subtitle, icon }) => {
+          {technical.map(({ id, title, subtitle, icon, onClick }) => {
             return (
               <CardReport
                 key={id}
                 title={title}
                 subtitle={subtitle}
                 icon={icon}
+                onClick={onClick}
               />
             )
           })}

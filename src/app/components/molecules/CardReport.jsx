@@ -1,7 +1,11 @@
+'use client'
 import propTypes from 'prop-types'
-export const CardReport = ({ title, subtitle, icon }) => {
+export const CardReport = ({ title, subtitle, icon, onClick }) => {
   return (
-    <div className="bg-blue-100 overflow-hidden shadow sm:rounded-lg dark:bg-gray-900 w-full">
+    <div
+      onClick={onClick}
+      className="bg-blue-100 overflow-hidden shadow sm:rounded-lg dark:bg-gray-900 w-full cursor-pointer"
+    >
       <div className="px-4 py-5 sm:p-6 flex gap-4 items-center">
         {icon}
         <div>
@@ -21,4 +25,5 @@ CardReport.propTypes = {
   title: propTypes.string,
   subtitle: propTypes.string,
   icon: propTypes.node.isRequired,
+  onClick: propTypes.func,
 }

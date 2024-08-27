@@ -1,5 +1,5 @@
 'use client'
-
+// TODO: PÁGINA DE PRUEBA BORRAR
 import { useState } from 'react'
 import { Section } from '@/components/atoms/ui/Section'
 import { Button } from '@nextui-org/react'
@@ -38,6 +38,18 @@ export default function TestClientPage() {
     document.body.removeChild(a)
   }
 
+  const handleDownloadExcel = () => {
+    const url = '/api/generate-excel'
+
+    // Crea un enlace y simula un clic para descargar el archivo
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'datos.xlsx' // Nombre sugerido para el archivo
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
   return (
     <Section>
       <h2>{`</TestClientPage>`}</h2>
@@ -45,7 +57,8 @@ export default function TestClientPage() {
         Dump
       </Button>
       {message && <p>{message}</p>}
-      <button onClick={handleDownload}>Descargar Dump</button>
+      <Button onClick={handleDownload}>Descargar Dump</Button>
+      <Button onClick={handleDownloadExcel}>Descargar Excel</Button>
     </Section>
   )
 }
