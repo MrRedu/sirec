@@ -31,7 +31,6 @@ export const AssignmentsTable = ({
   const [selectedRow, setSelectedRow] = useState(null)
   const handleRowSelect = row => {
     setSelectedRow(row)
-    // console.log(selectedRow)
   }
 
   const modalToAddAssignment = useDisclosure()
@@ -50,8 +49,6 @@ export const AssignmentsTable = ({
     isLoading,
     handleReset,
   } = useAssignments()
-
-  console.log(isLoading)
 
   return (
     <>
