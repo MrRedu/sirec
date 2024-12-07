@@ -29,7 +29,8 @@ CREATE TABLE `tbl_users` (
 INSERT INTO `tbl_users` (`id_user`, `email_user`, `password_user`, `name_user`, `id_rol`) VALUES
 (1, 'eduardo@admin.com', '$2a$10$5dvJO4wr08MM1FJvLjJIe.Al2QvqO/BHO0mCQEvJa2SAPryT8tOuy', 'Eduardo A', 1),
 (2, 'eduardo@dev.com', '$2a$10$lGUgR76myFebqgZw6b3YQOpZWYPVPywkM18CRwY37BIXVxqgMU9Wi', 'Eduardo D', 2),
-(3, 'eduardo@general.com', '$2a$10$iktNKJeBArNkaOphXDnP9uLKS8yeFP.6XjYSMeUnWpd9tuQZAMsLm', 'Eduardo G', 3);
+(3, 'eduardo@general.com', '$2a$10$iktNKJeBArNkaOphXDnP9uLKS8yeFP.6XjYSMeUnWpd9tuQZAMsLm', 'Eduardo G', 3),
+(4, 'admin@admin.com', '$2a$10$0FfP3KWKDIw508ZMm06SVewQX1qA6GqRHJ8VPr5MnNjbWPjPbvBwa', 'Admin A', 1); -- 12345678
 
 
 
